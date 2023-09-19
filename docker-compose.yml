@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:7.0.1
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  ui:
+    build:
+      context: ./chat-ui
+      secrets:
+        - DOTENV_LOCAL
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  mongo-data:
+
+
+secrets:
+  DOTENV_LOCAL:
+    file: .env.local
