@@ -18,6 +18,22 @@ services:
     depends_on:
       - db
 
+  tgi:
+    image: ghcr.io/huggingface/text-generation-inference:1.0.3
+    ports:
+      - "8080:3000"
+    volumes:
+      - ${PWD}/data:/data
+    environment:
+      - CUDA_LAUNCH_BLOCKING=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
 volumes:
   mongo-data:
 
