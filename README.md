@@ -9,6 +9,7 @@
 
 ```bash
 # pull chat-ui
+$ git submodule init
 $ git submodule update
 
 # copy .env.local

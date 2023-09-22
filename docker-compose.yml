@@ -3,8 +3,8 @@ version: '3'
 services:
   db:
     image: mongo:7.0.1
-    ports:
-      - "27017:27017"
+    expose:
+      - 27017
     volumes:
       - mongo-data:/data/db
 
@@ -14,7 +14,7 @@ services:
       secrets:
         - DOTENV_LOCAL
     ports:
-      - "3000:3000"
+      - "7860:3000"
     depends_on:
       - db
 
@@ -24,8 +24,8 @@ services:
       - "8080:3000"
     volumes:
       - ${PWD}/data:/data
-    environment:
-      - CUDA_LAUNCH_BLOCKING=1
+    env_file:
+      - tgi.env
     deploy:
       resources:
         reservations:
