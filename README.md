@@ -25,5 +25,5 @@ $ docker compose build --no-cache
 # If there is a key in .env.local, please remember to edit or delete it after the build phase
 # rm .env.local
 
-$ docker compose up -d --force-recreate
+$ docker compose up -d --no-deps ui
 ```
